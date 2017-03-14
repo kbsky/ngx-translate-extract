@@ -21,11 +21,14 @@ const options = cli.parse({
 	replace: ['r', 'Replace the contents of output file if it exists (Merges by default)', 'boolean', false],
 	sort: ['s', 'Sort translations in the output file in alphabetical order', 'boolean', false],
 	clean: ['c', 'Remove obsolete strings when merging', 'boolean', false],
-	experimental: ['e', 'Use experimental AST Service Parser', 'boolean', false]
+	experimental: ['e', 'Use experimental AST Service Parser', 'boolean', false],
+	templateExtension: ['t', 'Template file extension', 'string', 'html'],
 });
 
+const normalizedTemplateExtension = `/**/*.${options.templateExtension}`;
+
 const patterns: string[] = [
-	'/**/*.html',
+	normalizedTemplateExtension,
 	'/**/*.ts'
 ];
 const parsers: ParserInterface[] = [
